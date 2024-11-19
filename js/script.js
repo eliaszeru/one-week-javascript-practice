@@ -234,7 +234,56 @@ function sell(carname,carmilage,carcolor,carweight) {
 };
 let myToyota = new sell("Toyota", 1000, "black", 450);
 console.log(myToyota);
-console.log(myToyota.carweight);
+console.log(myToyota.color);
+
+
+//asynchronous example//
+console.log("hey");
+setTimeout(()=>{
+    console.log("hey from web api"),5000;
+});
+console.log("the last one");
+
+
+//callback method//
+function delivery(once) {
+    console.log("waiting order")
+    setTimeout(() => {
+        const reached = "delicious";
+        console.log("pizza orderd")
+        once(reached);
+    }, 2000);
+    
+}
+function successfuly(reached) {
+    console.log("eat your pizza")
+}
+delivery(successfuly);
+
+//the js promise//
+fetch("https://randomuser.me/api").then((sult) => sult.json())
+.then((mels) => console.log(mels.results[0])) 
+.catch((errr) => console.log("something went wrong",errr ));
+
+//the async await//
+
+async function waitt() {
+    try {
+        let grouped = await fetch("https://randomuser.me/api");
+    //console.log(grouped);
+    let response= await grouped.json();
+    //console.log(response);
+    let useri = response.results[0];
+    console.log(useri);
+        
+    } catch (error) {
+        console.log("something went wrong", error);
+    }
+    
+
+}
+waitt();
+
 
 
 
